@@ -1,0 +1,75 @@
+name: store_image_generator
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: 
+    sdk: flutter
+
+
+  responsive_framework: ^0.2.0
+  dotted_border: ^2.0.0+3
+
+
+  #---------------CORE LIBRARY---------------
+  #state management
+  flutter_mobx: ^2.0.6+5
+  mobx: ^2.1.4
+  mobx_codegen: ^2.1.1
+  get_it: ^7.2.0
+  #localization
+  intl: ^0.17.0
+  #network
+  dio: ^5.0.0
+  #ui
+  google_fonts: ^4.0.3
+  cached_network_image: ^3.2.3
+  octo_image: ^1.0.2
+  flutter_svg: ^2.0.1
+  #storage
+  shared_preferences: ^2.0.17
+
+  image_picker: ^0.8.6+2
+
+  #logger
+  sentry_flutter: ^6.20.1
+  #custom
+
+  custom_image_viewer:
+    git:
+      url: https://github.com/sinanhaci/custom_image_viewer.git
+      ref: main
+
+
+ 
+  
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  build_runner: ^2.2.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/
+    - assets/drawer/
+    - assets/drawer/layout/
+    - assets/drawer/devices/
+
+
+
+
