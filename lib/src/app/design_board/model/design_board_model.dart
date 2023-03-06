@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:image_picker/image_picker.dart';
 import 'package:store_image_generator/export.dart';
 import 'package:store_image_generator/src/app/drawer_board/model/drawer_detail.dart';
 
@@ -10,6 +10,7 @@ class DesignBoardModel {
   Font font;
   Background background;
   TextAlign align;
+  XFile? image;
   DesignBoardModel({
     required this.id,
     required this.index,
@@ -17,7 +18,8 @@ class DesignBoardModel {
     required this.device,
     required this.font,
     required this.background,
-    this.align = TextAlign.left
+    this.align = TextAlign.left,
+    this.image
   });
 
   DesignBoardModel copyWith({
@@ -28,6 +30,7 @@ class DesignBoardModel {
     Font? font,
     Background? background,
     TextAlign? align,
+    XFile? file
   }) {
     return DesignBoardModel(
       id: id ?? this.id,
@@ -36,9 +39,12 @@ class DesignBoardModel {
       device: device ?? this.device,
       font: font ?? this.font,
       background: background ?? this.background,
-      align: align ?? this.align
+      align: align ?? this.align,
+      image: file
     );
   }
+
+ 
 
   @override
   bool operator ==(covariant DesignBoardModel other) {
@@ -50,7 +56,9 @@ class DesignBoardModel {
       other.layout == layout &&
       other.device == device &&
       other.font == font &&
-      other.background == background;
+      other.background == background &&
+      other.align == align &&
+      other.image == image;
   }
 
   @override
@@ -60,6 +68,8 @@ class DesignBoardModel {
       layout.hashCode ^
       device.hashCode ^
       font.hashCode ^
-      background.hashCode;
+      background.hashCode ^
+      align.hashCode ^
+      image.hashCode;
   }
 }

@@ -30,13 +30,14 @@ class SquareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return GestureDetector(
+    return InkWell(
+      borderRadius: context.radiusLow,
       onTap: () => onTap(),
       child: Container(
         padding: context.paddingXLow,
         margin: context.paddingXLow,
-        height: 35,
-        width: 35,
+        height: 30,
+        width: 30,
         decoration: BoxDecoration(
             color: backgroundColor ?? theme.colorScheme.scaffoldBackround,
             borderRadius: context.radiusLow),

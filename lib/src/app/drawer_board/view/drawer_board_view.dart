@@ -1,4 +1,5 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:store_image_generator/core/extensions/context_extension.dart';
 import 'package:store_image_generator/core/widgets/text_widgets/text_widgets.dart';
 import 'package:store_image_generator/src/app/drawer_board/model/drawer_detail.dart';
@@ -132,7 +133,8 @@ class _DrawerDetail extends StatelessWidget {
       decoration:
           const BoxDecoration(border: Border(right: BorderSide(width: 0.1))),
       child: Observer(builder: (_) {
-        var detailItem = details.firstWhere((e) => e.layoutId == viewModel.selectedDrawer.id);
+        var detailItem = details
+            .firstWhere((e) => e.layoutId == viewModel.selectedDrawer.id);
         return _getWidgetByListingType(detailItem);
       }),
     );
@@ -165,19 +167,22 @@ class _DrawerDetail extends StatelessWidget {
     }
   }
 
-  Widget _getWidgetByWidgetType<T>({required WidgetType widgetType, required T item}) {
-    return Observer(builder: (_){
+  Widget _getWidgetByWidgetType<T>(
+      {required WidgetType widgetType, required T item}) {
+    return Observer(builder: (_) {
       switch (widgetType) {
         case WidgetType.layout:
           var layout = item as Layout;
           return SelectionWidget(
-            isSelection: viewModel.designBoard.selectedPage!.layout.id == layout.id,
+            isSelection:
+                viewModel.designBoard.selectedPage!.layout.id == layout.id,
             child: LayoutWidget(layout: layout, viewModel: viewModel),
           );
         case WidgetType.device:
           var device = item as Device;
           return SelectionWidget(
-            isSelection: viewModel.designBoard.selectedPage!.device.id == device.id,
+            isSelection:
+                viewModel.designBoard.selectedPage!.device.id == device.id,
             child: DeviceWidget(device: device, viewModel: viewModel),
           );
         case WidgetType.font:
@@ -189,8 +194,10 @@ class _DrawerDetail extends StatelessWidget {
         case WidgetType.background:
           var background = item as Background;
           return SelectionWidget(
-            isSelection: viewModel.designBoard.selectedPage!.background.id == background.id,
-            child: BackgroundWidget(background: background, viewModel: viewModel),
+            isSelection: viewModel.designBoard.selectedPage!.background.id ==
+                background.id,
+            child:
+                BackgroundWidget(background: background, viewModel: viewModel),
           );
       }
     });
@@ -213,20 +220,13 @@ class _ListingTypeGrid extends StatelessWidget {
     return Scrollbar(
       thumbVisibility: true,
       controller: controller,
-      child: GridView.builder(
+      child: AlignedGridView.count(
+        crossAxisCount: context.responsiveValues<int>(
+          phone: 1, tablet: 1, desktop: 2, desktop4k: 3),
         controller: controller,
         padding: context.paddingLow,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: context.responsiveValues<int>(
-              phone: 1, tablet: 1, desktop: 2, desktop4k: 3),
-          mainAxisSpacing: 15,
-          crossAxisSpacing: 5,
-          mainAxisExtent: context.responsiveValues<double>(
-              phone: context.height * .55,
-              tablet: context.height * .45,
-              desktop: context.height * .35,
-              desktop4k: context.height * .25),
-        ),
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 15,
         itemCount: itemCount,
         itemBuilder: itemBuilder,
       ),

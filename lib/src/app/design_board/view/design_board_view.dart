@@ -54,44 +54,44 @@ class _StylePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: context.height * .07,
-      margin: context.paddingMediumHorizontal,
-      decoration:
-          const BoxDecoration(border: Border(bottom: BorderSide(width: 0.1))),
-      child: Row(
-        children: [
-          _alignment(context),
-        ],
-      ),
-    );
-  }
-
-  Observer _alignment(BuildContext context) {
-    return Observer(builder: (_){
-      return Row(
-        children: [
-          SquareButton(
-            onTap: () => viewModel.setAlign(TextAlign.left),
-            assetImage: AssetConstans.alignLeft,
-            backgroundColor: viewModel.selectedPage!.align == TextAlign.left ? context.colors.candy : context.colors.gray,
-            iconColor: viewModel.selectedPage!.align == TextAlign.left ? context.colors.white : context.colors.candy,
-          ),
-          SquareButton(
-            onTap: () => viewModel.setAlign(TextAlign.center),
-            assetImage: AssetConstans.alignCenter,
-            backgroundColor: viewModel.selectedPage!.align == TextAlign.center ? context.colors.candy : context.colors.gray,
-            iconColor: viewModel.selectedPage!.align == TextAlign.center ? context.colors.white : context.colors.candy,
-          ),
-          SquareButton(
-            onTap: () => viewModel.setAlign(TextAlign.right),
-            assetImage: AssetConstans.alignRight,
-            backgroundColor: viewModel.selectedPage!.align == TextAlign.right ? context.colors.candy : context.colors.gray,
-            iconColor: viewModel.selectedPage!.align == TextAlign.right ? context.colors.white : context.colors.candy,
-          ),
-        ],
+    return Observer(builder: (_) {
+      return Container(
+        height: context.height * .07,
+        margin: context.paddingMediumHorizontal,
+        decoration:
+            const BoxDecoration(border: Border(bottom: BorderSide(width: 0.1))),
+        child: Row(
+          children: [
+            _alignment(context),
+          ],
+        ),
       );
     });
+  }
+
+  Row _alignment(BuildContext context) {
+    return Row(
+      children: [
+        SquareButton(
+          onTap: () => viewModel.setAlign(TextAlign.left),
+          assetImage: AssetConstans.alignLeft,
+          backgroundColor: viewModel.alignLeftStatus ? context.colors.candy : context.colors.gray,
+          iconColor: viewModel.alignLeftStatus ? context.colors.white : context.colors.candy,
+        ),
+        SquareButton(
+          onTap: () => viewModel.setAlign(TextAlign.center),
+          assetImage: AssetConstans.alignCenter,
+          backgroundColor: viewModel.alignCenterStatus ? context.colors.candy : context.colors.gray,
+          iconColor: viewModel.alignCenterStatus ? context.colors.white : context.colors.candy,
+        ),
+        SquareButton(
+          onTap: () => viewModel.setAlign(TextAlign.right),
+          assetImage: AssetConstans.alignRight,
+          backgroundColor: viewModel.alignRightStatus ? context.colors.candy : context.colors.gray,
+          iconColor: viewModel.alignRightStatus ? context.colors.white : context.colors.candy,
+        ),
+      ],
+    );
   }
 }
 
@@ -125,7 +125,7 @@ class _Pages extends StatelessWidget {
                   return BasePageView(
                     index: index,
                     viewModel: viewModel,
-                    child: _getLayoutByLayoutType(page),
+                    child: _getLayoutByLayoutType(page,index),
                   );
                 }
               },
@@ -136,18 +136,18 @@ class _Pages extends StatelessWidget {
     );
   }
 
-  Widget _getLayoutByLayoutType(DesignBoardModel page){
+  Widget _getLayoutByLayoutType(DesignBoardModel page,int index) {
     switch (page.layout.type) {
       case LayoutType.type_1:
-        return Type1(page: page,viewModel: viewModel);
+        return Type1(page: page, viewModel: viewModel);
       case LayoutType.type_2:
-        return Type2(page: page,viewModel: viewModel);
+        return Type2(page: page, viewModel: viewModel,index:index);
       case LayoutType.type_3:
-        return Type3(page: page,viewModel: viewModel);
+        return Type3(page: page, viewModel: viewModel);
       case LayoutType.type_4:
-        return Type4(page: page,viewModel: viewModel);
+        return Type4(page: page, viewModel: viewModel);
       case LayoutType.type_5:
-        return Type5(page: page,viewModel: viewModel);
+        return Type5(page: page, viewModel: viewModel);
     }
   }
 
@@ -164,14 +164,3 @@ class _Pages extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-

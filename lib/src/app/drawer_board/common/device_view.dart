@@ -20,6 +20,7 @@ class DeviceWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => viewModel.setDesignProperties(viewModel.designBoard.selectedPage!.copyWith(device: device)),
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: context.radiusLow,
           color: context.colors.darkGray,
@@ -29,17 +30,17 @@ class DeviceWidget extends StatelessWidget {
           )
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Container(
-                padding: context.paddingLow,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: context.radiusLowTop,
-                  child: Image.asset(
-                    device.image,
-                    fit: BoxFit.cover,
-                  ),
+            Container(
+              margin: context.paddingLow,
+              padding: context.paddingLow,
+              child: ClipRRect(
+                borderRadius: context.radiusLowTop,
+                child: Image.asset(
+                  device.image,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -52,8 +53,6 @@ class DeviceWidget extends StatelessWidget {
                 color: context.colors.gray,
                 borderRadius: context.radiusLowBottom
               ),
-              
-              width: double.infinity,
               padding: context.paddingLow,
               child: SmallText(device.title,fontWeightEnum: FontWeightEnum.bold,),
             ),

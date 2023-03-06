@@ -8,6 +8,13 @@ import 'src/app/drawer_board/model/drawer_item.dart';
 
  //TODO: JSON MODELE ÇEVİR
 
+class StaticData{
+  StaticData._();
+  static const double screenHeight = 2208 / 4;
+  static const double screenWidth = 1242 / 4;
+
+}
+
 
 List<DrawerItem> drawerItems = [
   DrawerItem(id: 0,name: "Layout", icon: AssetConstans.layout),

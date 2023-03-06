@@ -1,5 +1,7 @@
 import 'package:store_image_generator/core/extensions/context_extension.dart';
+import 'package:store_image_generator/src/common/constants/asset_constants.dart';
 import '../../../../../export.dart';
+import '../../../../../static_data.dart';
 import '../../model/design_board_model.dart';
 import '../../viewmodel/design_board_viewmodel.dart';
 
@@ -17,18 +19,17 @@ class Type3 extends StatelessWidget {
     return GestureDetector(
       onTap: () => viewModel.setSelectionPage(page),
       child: Container(
-        height: context.height,
-        width: context.width * .21,
+        height: StaticData.screenHeight,
+        width: StaticData.screenWidth,
         color: page.background.color,
-        padding: context.paddingMedium,
+        padding: EdgeInsets.only(bottom: context.paddingMedium.bottom,left: context.paddingMedium.left,right: context.paddingMedium.right),
         child: Column(
           children: [
-            Image.asset(page.device.image),
+            Expanded(child: Image.asset(page.device.image.toHalfTop(),fit: BoxFit.cover,)),
             const SizedBox(
               height: 50,
             ),
-            Expanded(
-                child: Text("Add your text here and create your screenshot",style: page.font.font,textAlign: page.align,),),
+            Text("Add your text here and create your screenshot",style: page.font.font,textAlign: page.align,),
           ],
         ),
       ),

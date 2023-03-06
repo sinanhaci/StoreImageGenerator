@@ -2,6 +2,7 @@
 import 'package:store_image_generator/core/extensions/context_extension.dart';
 import 'package:store_image_generator/src/app/design_board/viewmodel/design_board_viewmodel.dart';
 import '../../../../../export.dart';
+import '../../../../../static_data.dart';
 import '../../model/design_board_model.dart';
 
 class Type5 extends StatelessWidget {
@@ -18,8 +19,8 @@ class Type5 extends StatelessWidget {
     return GestureDetector(
       onTap: () => viewModel.setSelectionPage(page),
       child: Container(
-        height: context.height,
-        width: context.width * .21,
+        height: StaticData.screenHeight,
+        width: StaticData.screenWidth,
         color: page.background.color,
         padding: context.paddingMedium,
         child: Column(
