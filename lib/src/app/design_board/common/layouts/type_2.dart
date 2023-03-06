@@ -44,14 +44,14 @@ class Type2 extends StatelessWidget {
                 children: [
                   Positioned.fill(
                     child: Container(
-                      margin: const EdgeInsets.only(left: 14,right: 14,top: 30),
+                      //margin: const EdgeInsets.only(left: 14,right: 14,top: 30),
                       decoration: BoxDecoration(
                         borderRadius: context.radiusLowTop,
                         color: page.background.color,
                       ),
                       child: ClipRRect(
                         borderRadius: context.radiusLowTop,
-                        child: page.image == null ? null : Image.network(File(page.image!.path).path,fit: BoxFit.cover),
+                        child: page.image == null ? null : Image.network(File(page.image!.path).path,fit: BoxFit.fill),
                       ),
                     ),
                   ),
